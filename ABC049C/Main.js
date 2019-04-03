@@ -4,10 +4,9 @@ function Main(input) {
   let reverseWordList = [];
   let reverseTxt;
  
-  reverseTxt = input.split("").reverse().join("");
+  reverseTxt = input.split('\n')[0].split("").reverse().join("");
   reverseWordList = wordList.map(elem => elem.split("").reverse().join(""));
  
-  //console.log(reverseTxt, reverseWordList);
  
   while (reverseTxt.length > 0) {
     let cnt = 0;
@@ -23,6 +22,6 @@ function Main(input) {
     }
   }
  
-  console.log(reverseTxt.length === 0 ? 'YES' : 'NO');
+  console.log(reverseTxt.length === 0 ? "YES" : "NO");
 }
 Main(require("fs").readFileSync("/dev/stdin", "utf8"));
