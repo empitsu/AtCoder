@@ -1,27 +1,26 @@
 function Main(input) {
   "use strict";
   const wordList = ["dream", "dreamer", "erase", "eraser"];
-  let reverseWordList = [];
-  let reverseTxt;
- 
-  reverseTxt = input.split('\n')[0].split("").reverse().join("");
-  reverseWordList = wordList.map(elem => elem.split("").reverse().join(""));
- 
- 
-  while (reverseTxt.length > 0) {
-    let cnt = 0;
-    for (let l = 0; l < reverseWordList.length; l++) {
-      if (reverseTxt.startsWith(reverseWordList[l])) {
-        cnt++;
-        reverseTxt = reverseTxt.replace(reverseWordList[l], "");
+  const inputTxt = input.split("\n")[0];
+
+  let txtLength = inputTxt.length;
+  while (txtLength > 0) {
+    let isEndsWith = false;
+    for (let l = 0; l < wordList.length; l++) {
+      if (inputTxt.endsWith(wordList[l], txtLength)) {
+        txtLength -= wordList[l].length;
+        isEndsWith = true;
+        break;
       }
     }
- 
-    if (reverseTxt.length > 0 && cnt === 0) {
+
+    if (!isEndsWith) {
+      console.log("NO");
       break;
     }
+    if (txtLength === 0) {
+      console.log("YES");
+    }
   }
- 
-  console.log(reverseTxt.length === 0 ? "YES" : "NO");
 }
 Main(require("fs").readFileSync("/dev/stdin", "utf8"));
