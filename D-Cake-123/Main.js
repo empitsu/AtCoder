@@ -16,21 +16,17 @@ function Main(input) {
   var ABSumAry = [];
   var ABCSumAry = [];
 
-  for (var i = 0; i < K; i++) {
-    if (typeof AAry[i] === "undefined") break;
-    for (var j = 0; j < K; j++) {
-      if (typeof BAry[j] === "undefined") break;
+  for (var i = 0; i < X; i++) {
+    for (var j = 0; j < Y; j++) {
       ABSumAry.push(AAry[i] + BAry[j]);
     }
   }
 
   ABSumAry.sort((a, b) => b - a);
 
-  for (var k = 0; k < K; k++) {
-    if (typeof ABSumAry[k] === "undefined") break;
-
-    for (var l = 0; l < K; l++) {
-      if (typeof CAry[l] === "undefined") break;
+  for (var k = 0; k < Math.min(K, ABSumAry.length); k++) {
+    for (var l = 0; l < Math.min(Z, K); l++) {
+      if (Math.min(K, ABSumAry.length) < k * l) break;
       ABCSumAry.push(ABSumAry[k] + CAry[l]);
     }
   }
