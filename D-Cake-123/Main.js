@@ -8,13 +8,12 @@ function Main(input) {
   var AAry = tmp[1].split(/\s/).map(val => parseInt(val, 10));
   var BAry = tmp[2].split(/\s/).map(val => parseInt(val, 10));
   var CAry = tmp[3].split(/\s/).map(val => parseInt(val, 10));
+  var ABSumAry = [];
+  var ABCSumAry = [];
 
   AAry.sort((a, b) => b - a);
   BAry.sort((a, b) => b - a);
   CAry.sort((a, b) => b - a);
-
-  var ABSumAry = [];
-  var ABCSumAry = [];
 
   for (var i = 0; i < X; i++) {
     for (var j = 0; j < Y; j++) {
