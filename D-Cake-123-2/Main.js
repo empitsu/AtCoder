@@ -24,21 +24,38 @@ function Main(input) {
     priorityQueue.delete(keyOfHighestVal);
 
     var ary = keyOfHighestVal.split(",").map(val => parseInt(val, 10));
+    var keyAry1Str = [ary[0] + 1, ary[1], ary[2]].join(",");
 
-    var [a, b, c] = ary;
-    var keyAry1Str = [a + 1, b, c].join(",");
+    if (
+      !priorityQueue.has(keyAry1Str) &&
+      (AAry[ary[0] + 1] && BAry[ary[1]] && CAry[ary[2]])
+    )
+      priorityQueue.set(
+        keyAry1Str,
+        AAry[ary[0] + 1] + BAry[ary[1]] + CAry[ary[2]]
+      );
+    var keyAry2Str = [ary[0], ary[1] + 1, ary[2]].join(",");
+    if (
+      !priorityQueue.has(keyAry2Str) &&
+      (AAry[ary[0]] && BAry[ary[1] + 1] && CAry[ary[2]])
+    )
+      priorityQueue.set(
+        keyAry2Str,
+        AAry[ary[0]] + BAry[ary[1] + 1] + CAry[ary[2]]
+      );
+    var keyAry3Str = [ary[0], ary[1], ary[2] + 1].join(",");
 
-    if (!priorityQueue.has(keyAry1Str) && (AAry[a + 1] && BAry[b] && CAry[c]))
-      priorityQueue.set(keyAry1Str, AAry[a + 1] + BAry[b] + CAry[c]);
-    var keyAry2Str = [a, b + 1, c].join(",");
-    if (!priorityQueue.has(keyAry2Str) && (AAry[a] && BAry[b + 1] && CAry[c]))
-      priorityQueue.set(keyAry2Str, AAry[a] + BAry[b + 1] + CAry[c]);
-    var keyAry3Str = [a, b, c + 1].join(",");
-    if (!priorityQueue.has(keyAry3Str) && (AAry[a] && BAry[b] && CAry[c + 1]))
-      priorityQueue.set(keyAry3Str, AAry[a] + BAry[b] + CAry[c + 1]);
+    if (
+      !priorityQueue.has(keyAry3Str) &&
+      (AAry[ary[0]] && BAry[ary[1]] && CAry[ary[2] + 1])
+    )
+      priorityQueue.set(
+        keyAry3Str,
+        AAry[ary[0]] + BAry[ary[1]] + CAry[ary[2] + 1]
+      );
   }
   for (var k = 0; k < sumAry.length; k++) {
-    console.log(sumAry);
+    console.log(sumAry[k]);
   }
 }
 
