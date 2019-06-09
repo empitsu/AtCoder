@@ -8,13 +8,12 @@ function Main(input) {
   var AAry = tmp[1].split(/\s/).map(val => parseInt(val, 10));
   var BAry = tmp[2].split(/\s/).map(val => parseInt(val, 10));
   var CAry = tmp[3].split(/\s/).map(val => parseInt(val, 10));
+  var sumAry = [];
+  var priorityQueue = new Map();
 
   AAry.sort((a, b) => b - a);
   BAry.sort((a, b) => b - a);
   CAry.sort((a, b) => b - a);
-
-  var sumAry = [];
-  var priorityQueue = new Map();
 
   priorityQueue.set("0,0,0", AAry[0] + BAry[0] + CAry[0]);
 
@@ -72,8 +71,4 @@ var findKeyOfHighestValue = map => {
   return highestValueKey;
 };
 
-Main(`2 2 2 8
-4 6
-1 5
-3 8`);
-// Main(require("fs").readFileSync("/dev/stdin", "utf8"));
+Main(require("fs").readFileSync("/dev/stdin", "utf8"));
