@@ -4,17 +4,11 @@ function Main(input) {
     .trim()
     .split(/\s/)
     .map(val => parseInt(val, 10));
-  const sumAry = [];
 
-  for(let i=0;i<PQR.length;i++){
-    const copyAry = PQR.concat();
-    copyAry.splice(i,1);
+  let sum = PQR.reduce((sum, currentVal) => {
+    return sum + currentVal;
+  }, 0);
 
-    for(let j=0;j<copyAry.length;j++){
-      sumAry.push(PQR[i]+copyAry[j]);
-    }
-  }
-  
-  console.log(Math.min(...sumAry));
+  console.log(sum - Math.max(...PQR));
 }
 Main(require("fs").readFileSync("/dev/stdin", "utf8"));
