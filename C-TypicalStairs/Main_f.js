@@ -2,7 +2,7 @@
 function Main(input) {
   const tmp = input.trim().split("\n");
   const stepCount = parseInt(tmp[0].split(/\s/)[0], 10);
-  const brokenStepAry = tmp.slice(1).map(val => parseInt(val, 10));
+  const brokenStepAry = tmp.slice(1).map((val) => parseInt(val, 10));
   const mod = 1000000007;
 
   const casesAry = [];
@@ -17,30 +17,21 @@ function Main(input) {
       }
     }
 
-    casesAry.push(fibonacci(stepLength - 1));
+    casesAry.push(fibonacci(stepLength));
   }
-  casesAry.push(
-    fibonacci(stepCount - brokenStepAry[brokenStepAry.length - 1] - 1)
-  );
+  casesAry.push(fibonacci(stepCount - brokenStepAry[brokenStepAry.length - 1]));
   console.log(
     casesAry.reduce((previousVal, currentVal) => {
-      return previousVal * currentVal;
+      return (previousVal * currentVal) % mod;
     }, 1) % mod
   );
 }
 
-const fibonacci = n => {
-  const memo = {};
-  function fib(n) {
-    if (memo[n]) return memo[n];
-    if (n === 0) return 1;
-    if (n === 1) return 1;
-    if (n === 2) return 2;
-    let sum = 0;
-    sum = fib(n - 1) + fib(n - 2);
-    return (memo[n] = sum);
-  }
-  return fib(n);
+const fibonacci = (n) => {
+  // use Binet's Formula
+  return Math.round(
+    (((1 + 5 ** 0.5) / 2) ** n - ((1 - 5 ** 0.5) / 2) ** n) / 5 ** 0.5
+  );
 };
 
 Main(`100 5
