@@ -5,6 +5,11 @@ function Main(input) {
   const brokenStepAry = tmp.slice(1).map((val) => parseInt(val, 10));
   const mod = 1000000007;
 
+  if(brokenStepAry.length==0) {
+    console.log(fibonacci(stepCount+1))
+    return 
+  }
+
   const casesAry = [];
   for (let i = 0; i < brokenStepAry.length; i++) {
     let stepLength;
@@ -12,7 +17,7 @@ function Main(input) {
       stepLength = brokenStepAry[i];
     } else {
       stepLength = brokenStepAry[i] - brokenStepAry[i - 1] - 1;
-      if (stepLength <= 1) {
+      if (stepLength < 1) {
         return console.log(0);
       }
     }
@@ -22,7 +27,7 @@ function Main(input) {
   casesAry.push(fibonacci(stepCount - brokenStepAry[brokenStepAry.length - 1]));
   console.log(
     casesAry.reduce((previousVal, currentVal) => {
-      return (previousVal * currentVal) % mod;
+      return (previousVal * currentVal % mod) % mod;
     }, 1) % mod
   );
 }
@@ -34,10 +39,5 @@ const fibonacci = (n) => {
   );
 };
 
-Main(`100 5
-1
-23
-45
-67
-89`);
+Main(`7 0`)
 // Main(require("fs").readFileSync("/dev/stdin", "utf8"));
